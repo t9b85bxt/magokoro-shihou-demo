@@ -1,0 +1,53 @@
+/* ==========================================================================
+   animations.css — reveal初期状態 / hover用トランジション / フェイルセーフ
+   構成案 §4.6：GSAP初期化に成功した場合のみ html.js-anim-ready が付与される。
+   このクラスがない状態（CDN障害等）では .reveal は常時通常表示のままとする。
+   ========================================================================== */
+
+.js-anim-ready .reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+.js-anim-ready .reveal.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.js-anim-ready .hero-line {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.js-anim-ready .draw-line path {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+}
+.js-anim-ready .draw-line.is-drawn path {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1.1s var(--ease-out);
+}
+
+/* 数値カウントアップの初期状態（テキストはSSR的に目標値を出しておき、JSで0からカウント） */
+.stat__num { font-variant-numeric: tabular-nums; }
+
+/* prefers-reduced-motion: すべてのアニメーションを即時化・停止する */
+@media (prefers-reduced-motion: reduce) {
+  .js-anim-ready .reveal,
+  .js-anim-ready .hero-line {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .js-anim-ready .draw-line path {
+    stroke-dashoffset: 0 !important;
+  }
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* メニュー開閉・ハンバーガーはCSS transitionのみでも成立させる（GSAP併用の上乗せ演出） */
+.global-nav { will-change: transform; }

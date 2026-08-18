@@ -1,0 +1,102 @@
+/* ==========================================================================
+   variables.css — まごころ司法書士事務所 デモサイト
+   配色・フォント・共通トークン定義（構成案 §1.2 / §1.3 / §8.1 準拠）
+   ========================================================================== */
+
+:root {
+  /* ---- カラー：ベース（深紺） ---- */
+  --color-navy-950: #0B1426;   /* 最深紺：フッター専用（cta-bandとの境界を明確にするための濃色） */
+  --color-navy-900: #14213D;   /* メインカラー：最も深い紺（ヘッダー、見出し背景） */
+  --color-navy-700: #1F3159;   /* 紺：ボタン、強調テキスト */
+  --color-navy-500: #35507F;   /* 紺（明）：サブテキスト、線 */
+  --color-navy-100: #E9ECF3;   /* 薄紺：セクション背景の区切り */
+
+  /* ---- カラー：アクセント（ゴールド） ---- */
+  --color-gold-600: #A9812F;   /* ゴールド濃：ボタンホバー、線装飾 */
+  --color-gold-500: #B08D57;   /* ゴールド：アクセント、アイコン、装飾線 */
+  --color-gold-100: #F3EAD8;   /* 薄ゴールド：バッジ背景、カード背景アクセント */
+
+  /* ---- カラー：ベース背景・テキスト ---- */
+  --color-bg: #FBFAF7;         /* オフホワイト：ページ全体の背景 */
+  --color-surface: #FFFFFF;    /* カード・パネル背景 */
+  --color-text-main: #2A2A2A;  /* 本文テキスト */
+  --color-text-sub: #6B6B6B;   /* 補足テキスト */
+  --color-border: #E3DFD6;     /* 罫線 */
+
+  /* ---- カラー：状態 ---- */
+  --color-success: #3D7A5C;
+  --color-danger: #B0453E;
+
+  /* ---- フォント ---- */
+  --font-serif: "Noto Serif JP", "Hiragino Mincho ProN", serif;
+  --font-sans: "Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif;
+
+  /* CLS対策：フォールバック時とNoto読み込み後の寸法差を最小化するための行間微調整 */
+  --lh-fallback-adjust: 1.02;
+
+  /* ---- タイポグラフィ数値基準（構成案 §8.1） ---- */
+  --fs-body: 16px;         /* 本文（モバイル） */
+  --fs-body-lg: 18px;      /* 本文（デスクトップ） */
+  --lh-body: 1.8;          /* 本文行間 */
+
+  --fs-h1-mobile: 28px;
+  --fs-h1-desktop: 44px;
+  --fs-h2-mobile: 22px;
+  --fs-h2-desktop: 32px;
+  --fs-h3-mobile: 18px;
+  --fs-h3-desktop: 22px;
+
+  --fs-small: 13px;
+  --fs-caption: 12px;
+
+  --measure: 38ch; /* 本文最大文字幅の目安（全角35〜40文字相当） */
+
+  --tap-min: 44px; /* WCAG 2.5.5 準拠のタップ領域最小値 */
+
+  /* ---- レイアウト ---- */
+  --container-max: 1200px;
+  --container-pad: 20px;
+
+  --space-3xs: 4px;
+  --space-2xs: 8px;
+  --space-xs: 12px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 40px;
+  --space-xl: 64px;
+  --space-2xl: 96px;
+  --space-3xl: 128px;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 2px 8px rgba(20, 33, 61, 0.06);
+  --shadow-md: 0 8px 24px rgba(20, 33, 61, 0.10);
+  --shadow-lg: 0 16px 48px rgba(20, 33, 61, 0.16);
+
+  --header-h-top: 88px;
+  --header-h-scrolled: 64px;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ---- 装飾比率 ---- */
+  --ar-hero: 21/9;
+  --ar-wide: 16/9;
+  --ar-classic: 4/3;
+  --ar-portrait: 3/4;
+  --ar-square: 1/1;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --fs-body: var(--fs-body-lg);
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --container-pad: 32px;
+  }
+}
