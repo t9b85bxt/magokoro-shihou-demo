@@ -384,6 +384,66 @@
 }
 
 /* ---------------------------------------------------------------------- */
+/* ヒーロー（index.html トップ）                                             */
+/* ---------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  padding-top: calc(var(--header-h-top) + var(--space-2xl));
+  padding-bottom: var(--space-2xl);
+}
+.hero__bg {
+  position: absolute;
+  inset: -8% 0;
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
+  z-index: -2;
+}
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(100deg, rgba(15,25,46,0.85) 0%, rgba(20,33,61,0.6) 42%, rgba(20,33,61,0.26) 78%);
+}
+.hero__content { position: relative; max-width: 720px; }
+.hero__headline {
+  font-size: 40px;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+@media (min-width: 640px) {
+  .hero__headline { font-size: 56px; }
+}
+@media (min-width: 1024px) {
+  .hero__headline { font-size: 72px; }
+}
+.hero__trust {
+  position: relative;
+  margin-top: var(--space-lg);
+  padding-top: var(--space-sm);
+  border-top: 1px solid rgba(255,255,255,0.18);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  align-items: center;
+}
+.hero__trust-item {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-size: 13.5px;
+  color: rgba(255,255,255,0.72);
+}
+.hero__trust-item strong {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  color: var(--color-gold-500);
+  font-weight: 700;
+}
+
+/* ---------------------------------------------------------------------- */
 /* バッジ / セクション見出し                                                 */
 /* ---------------------------------------------------------------------- */
 .badge {
@@ -440,6 +500,18 @@
 .section--navy .section-head p { color: rgba(255,255,255,0.72); }
 .section--tint {
   background: var(--color-navy-100);
+  position: relative;
+  isolation: isolate;
+}
+.section--tint::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
 }
 .section--surface { background: var(--color-surface); }
 
@@ -491,6 +563,11 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 0.5s var(--ease-out);
+}
+.service-card:hover .img-slot img,
+.column-card:hover .img-slot img {
+  transform: scale(1.05);
 }
 
 /* ---------------------------------------------------------------------- */
@@ -512,6 +589,15 @@
   .card:active { transform: scale(0.98); }
 }
 
+/* 紺背景セクション上に置くカードのバリアント（about.htmlの「3つの約束」等） */
+.card--on-navy {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.16);
+  color: #fff;
+}
+.card--on-navy:hover { background: rgba(255, 255, 255, 0.1); }
+.card--on-navy p { color: rgba(255, 255, 255, 0.75); }
+
 .reason-card {
   padding: var(--space-md);
   text-align: left;
@@ -526,6 +612,39 @@
 }
 .reason-card h3 { margin-bottom: 6px; }
 .reason-card p { color: var(--color-text-sub); font-size: 15px; }
+
+/* 「選ばれる理由」台帳風レイアウト：カードグリッドに代わる連番リスト表現 */
+.reason-ledger {
+  border-top: 1px solid var(--color-border);
+}
+.reason-ledger__row {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: var(--space-sm) var(--space-md);
+  align-items: start;
+  padding-block: var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+}
+@media (min-width: 768px) {
+  .reason-ledger__row {
+    grid-template-columns: 120px 1fr;
+    align-items: center;
+    padding-block: var(--space-lg);
+  }
+}
+.reason-ledger__num {
+  font-family: var(--font-serif);
+  font-size: 38px;
+  font-weight: 700;
+  color: var(--color-shu-500);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+@media (min-width: 1024px) {
+  .reason-ledger__num { font-size: 52px; }
+}
+.reason-ledger__body h3 { margin-bottom: 4px; }
+.reason-ledger__body p { color: var(--color-text-sub); font-size: 15px; max-width: 56ch; }
 
 .service-card { overflow: hidden; display: flex; flex-direction: column; }
 .service-card__body { padding: var(--space-md); flex: 1; display: flex; flex-direction: column; }
@@ -544,7 +663,18 @@
 .link-arrow:hover svg { transform: translateX(4px); }
 .link-arrow:hover { color: var(--color-gold-600); }
 
-.voice-card { padding: var(--space-md); }
+.voice-card { padding: var(--space-md); position: relative; overflow: hidden; }
+.voice-card__seal {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  width: 68px;
+  height: 68px;
+  color: var(--color-shu-500);
+  opacity: 0.12;
+  transform: rotate(-12deg);
+  pointer-events: none;
+}
 .voice-card__head {
   display: flex;
   align-items: center;
@@ -552,18 +682,21 @@
   margin-bottom: var(--space-sm);
 }
 .voice-card__avatar {
-  width: 40px;
-  height: 40px;
-  min-width: 40px;
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
   border-radius: 50%;
-  background: var(--color-navy-100);
-  border: 1px solid var(--color-gold-500);
-  color: var(--color-gold-600);
+  background: var(--color-shu-100);
+  color: var(--color-shu-700);
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.voice-card__avatar svg { width: 19px; height: 19px; }
+.voice-card__avatar--fudousan { background: var(--color-navy-100); color: var(--color-navy-900); }
+.voice-card__avatar--houjin { background: var(--color-gold-100); color: var(--color-gold-600); }
 .voice-card__stars { color: var(--color-gold-500); margin-bottom: 10px; letter-spacing: 2px; }
 .voice-card__meta { font-size: 13.5px; font-weight: 700; color: var(--color-navy-900); }
 .voice-card__quote { font-size: 15px; }
@@ -576,6 +709,10 @@
   background: var(--color-gold-100); color: var(--color-navy-900);
   border-radius: var(--radius-pill); font-size: 11.5px; font-weight: 700;
 }
+/* 業務カテゴリ別のタグ配色：相続=朱／不動産=紺／法人=金 で全ページ共通の見分けをつける（column-card__tag / service-card__tag 共通） */
+.tag--souzoku { background: var(--color-shu-100); color: var(--color-shu-700); }
+.tag--fudousan { background: var(--color-navy-100); color: var(--color-navy-900); }
+.tag--houjin { background: var(--color-gold-100); color: var(--color-gold-600); }
 .column-card h3 { margin-block: 10px; font-size: 17px; }
 .column-card p { color: var(--color-text-sub); font-size: 14.5px; }
 
@@ -612,14 +749,45 @@
 }
 
 /* ---------------------------------------------------------------------- */
-/* 二重丸（印影）モチーフ・装飾                                               */
+/* 朱印（印影）モチーフ・装飾 — サイト共通シグネチャー                          */
 /* ---------------------------------------------------------------------- */
 .seal-deco {
   position: absolute;
-  opacity: 0.08;
+  opacity: 0.16;
   pointer-events: none;
-  color: var(--color-gold-500);
+  color: var(--color-shu-500);
+  transform: rotate(var(--stamp-tilt));
 }
+.seal-deco--gold {
+  color: var(--color-gold-500);
+  opacity: 0.08;
+}
+
+/* 主役級の押印スタンプ：CTA帯・ヒーローなど「受理・証明」の意味を持たせたい箇所専用 */
+.seal-stamp {
+  position: absolute;
+  color: var(--color-shu-500);
+  opacity: 0.9;
+  pointer-events: none;
+  transform: rotate(var(--stamp-tilt));
+}
+.seal-stamp circle,
+.seal-stamp line {
+  stroke: currentColor;
+}
+.seal-stamp__label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  color: currentColor;
+  letter-spacing: 0.3em;
+  text-align: center;
+}
+
 .divider-line {
   width: 100%;
   height: 1px;
@@ -641,6 +809,10 @@
 }
 @media (min-width: 640px) {
   .stats { grid-template-columns: repeat(3, 1fr); }
+}
+.stats > div {
+  padding-top: var(--space-sm);
+  border-top: 1px solid rgba(255,255,255,0.15);
 }
 .stat__num {
   font-family: var(--font-serif);
@@ -701,6 +873,77 @@
   color: var(--color-gold-600);
   font-weight: 700;
 }
+
+/* 縦タイムライン：flow.html / services-*.html の「手続きの流れ」を統一する共通コンポーネント */
+.timeline {
+  display: flex;
+  flex-direction: column;
+}
+.timeline__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: var(--space-md);
+  padding-bottom: var(--space-lg);
+}
+.timeline__item:last-child { padding-bottom: 0; }
+.timeline__item::before {
+  content: "";
+  position: absolute;
+  left: 27px;
+  top: 56px;
+  bottom: 0;
+  width: 1px;
+  background: var(--color-border);
+}
+.timeline__item:last-child::before { display: none; }
+.timeline__num {
+  width: 56px;
+  height: 56px;
+  min-width: 56px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-gold-500);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 19px;
+  color: var(--color-gold-600);
+  background: var(--color-surface);
+  position: relative;
+  z-index: 1;
+}
+.timeline__num::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  border: 1px solid var(--color-gold-500);
+  opacity: 0.5;
+}
+.timeline__item.is-current .timeline__num {
+  background: var(--color-shu-500);
+  border-color: var(--color-shu-500);
+  color: #fff;
+}
+.timeline__item.is-current .timeline__num::before { border-color: rgba(255,255,255,0.6); }
+.timeline__body { padding-top: 10px; }
+.timeline__body h3 { margin-bottom: 6px; }
+.timeline__body p { color: var(--color-text-sub); font-size: 14.5px; }
+.timeline__meta {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--color-shu-100);
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--color-shu-700);
+}
+.section--navy .timeline__item::before { background: rgba(255,255,255,0.2); }
+.section--navy .timeline__num { background: var(--color-navy-900); }
+.section--navy .timeline__body p { color: rgba(255,255,255,0.75); }
 
 /* ---------------------------------------------------------------------- */
 /* アコーディオン（FAQ）                                                     */
@@ -808,7 +1051,7 @@
   color: var(--color-navy-900);
 }
 .price-table td:nth-child(2), .price-table td:nth-child(3) {
-  color: var(--color-navy-700);
+  color: var(--color-shu-700);
   font-weight: 700;
   white-space: nowrap;
 }
@@ -823,9 +1066,21 @@
   color: var(--color-navy-900);
   font-weight: 700;
   margin-block: var(--space-xs);
+  position: relative;
+  display: inline-block;
+}
+.pricing-card__price::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  bottom: -6px;
+  height: 2px;
+  background: var(--color-shu-500);
+  opacity: 0.55;
 }
 .pricing-card__price span { font-size: 14px; color: var(--color-text-sub); font-weight: 400; }
-.pricing-card p.pricing-card__note { color: var(--color-text-sub); font-size: 13px; }
+.pricing-card p.pricing-card__note { color: var(--color-text-sub); font-size: 13px; margin-top: var(--space-sm); }
 
 .note-box {
   background: var(--color-navy-100);
@@ -1228,6 +1483,18 @@
   font-size: 88px;
   color: var(--color-gold-500);
   line-height: 1;
+  position: relative;
+  display: inline-block;
+}
+.error-page__code::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: -10px;
+  height: 3px;
+  background: var(--color-shu-500);
+  opacity: 0.7;
 }
 .error-page h1 { color: #fff; margin-block: var(--space-sm); }
 .error-page p { color: rgba(255,255,255,0.78); margin-inline: auto; }

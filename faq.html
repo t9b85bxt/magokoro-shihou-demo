@@ -128,7 +128,15 @@
   <section class="section--surface">
     <div class="container">
 
-      <div class="section-head reveal">
+      <nav class="faq-tabs reveal" aria-label="質問カテゴリへのジャンプ">
+        <a class="faq-tab" href="#cat-general">ご相談全般</a>
+        <a class="faq-tab" href="#cat-souzoku">相続</a>
+        <a class="faq-tab" href="#cat-fudousan">不動産</a>
+        <a class="faq-tab" href="#cat-houjin">法人</a>
+        <a class="faq-tab" href="#cat-pricing">料金</a>
+      </nav>
+
+      <div class="section-head reveal" id="cat-general" style="scroll-margin-top:110px; border-top:2px solid var(--color-shu-500); padding-top:var(--space-md);">
         <span class="eyebrow">General</span>
         <h2>ご相談全般について</h2>
       </div>
@@ -138,7 +146,7 @@
         <div class="accordion-item" data-open="false"><button class="accordion-trigger" type="button" aria-expanded="false"><span class="accordion-trigger__q"><span class="qmark">Q.</span>対応エリアはどこまでですか？</span><span class="accordion-trigger__icon" aria-hidden="true">+</span></button><div class="accordion-panel"><div class="accordion-panel__inner"><p>東京都立川市を中心に多摩地域・近隣市町村まで対応しています。オンライン相談であれば全国対応可能です。</p></div></div></div>
       </div>
 
-      <div class="section-head reveal">
+      <div class="section-head reveal" id="cat-souzoku" style="scroll-margin-top:110px; border-top:2px solid var(--color-shu-500); padding-top:var(--space-md);">
         <span class="eyebrow">Inheritance</span>
         <h2>相続について</h2>
       </div>
@@ -149,7 +157,7 @@
         <div class="accordion-item" data-open="false"><button class="accordion-trigger" type="button" aria-expanded="false"><span class="accordion-trigger__q"><span class="qmark">Q.</span>借金も相続してしまうのでしょうか？</span><span class="accordion-trigger__icon" aria-hidden="true">+</span></button><div class="accordion-panel"><div class="accordion-panel__inner"><p>相続放棄の手続きを行うことで、借金を含めた相続を回避できます。期限がありますのでお早めにご相談ください。</p></div></div></div>
       </div>
 
-      <div class="section-head reveal">
+      <div class="section-head reveal" id="cat-fudousan" style="scroll-margin-top:110px; border-top:2px solid var(--color-navy-500); padding-top:var(--space-md);">
         <span class="eyebrow">Real Estate</span>
         <h2>不動産について</h2>
       </div>
@@ -159,7 +167,7 @@
         <div class="accordion-item" data-open="false"><button class="accordion-trigger" type="button" aria-expanded="false"><span class="accordion-trigger__q"><span class="qmark">Q.</span>権利証を紛失してしまいました。</span><span class="accordion-trigger__icon" aria-hidden="true">+</span></button><div class="accordion-panel"><div class="accordion-panel__inner"><p>本人確認情報の作成など代替手段がございます。まずは状況をお聞かせください。</p></div></div></div>
       </div>
 
-      <div class="section-head reveal">
+      <div class="section-head reveal" id="cat-houjin" style="scroll-margin-top:110px; border-top:2px solid var(--color-gold-500); padding-top:var(--space-md);">
         <span class="eyebrow">Corporate</span>
         <h2>法人について</h2>
       </div>
@@ -169,7 +177,7 @@
         <div class="accordion-item" data-open="false"><button class="accordion-trigger" type="button" aria-expanded="false"><span class="accordion-trigger__q"><span class="qmark">Q.</span>税理士・社労士も紹介してもらえますか？</span><span class="accordion-trigger__icon" aria-hidden="true">+</span></button><div class="accordion-panel"><div class="accordion-panel__inner"><p>可能です。提携先の専門家をご紹介し、設立後の税務・労務面もワンストップでサポートします。</p></div></div></div>
       </div>
 
-      <div class="section-head reveal">
+      <div class="section-head reveal" id="cat-pricing" style="scroll-margin-top:110px; border-top:2px solid var(--color-border); padding-top:var(--space-md);">
         <span class="eyebrow">Pricing</span>
         <h2>料金について</h2>
       </div>
@@ -183,9 +191,10 @@
   </section>
 
   <section class="cta-band">
-    <svg class="seal-deco" width="360" height="360" viewBox="0 0 360 360" style="right:-90px; top:-100px;" aria-hidden="true">
-      <circle cx="180" cy="180" r="170" fill="none" stroke="currentColor" stroke-width="1.5"/>
-      <circle cx="180" cy="180" r="128" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <svg class="seal-stamp" width="220" height="220" viewBox="0 0 220 220" style="right:-40px; top:-30px; opacity:.22;" aria-hidden="true">
+      <circle cx="110" cy="110" r="98" fill="none" stroke-width="2"/>
+      <circle cx="110" cy="110" r="70" fill="none" stroke-width="2"/>
+      <line x1="110" y1="80" x2="110" y2="110" stroke-width="2"/>
     </svg>
     <div class="container reveal" style="position:relative;">
       <h2>まずは、無料相談から。</h2>

@@ -16,6 +16,11 @@
   --color-gold-500: #B08D57;   /* ゴールド：アクセント、アイコン、装飾線 */
   --color-gold-100: #F3EAD8;   /* 薄ゴールド：バッジ背景、カード背景アクセント */
 
+  /* ---- カラー：朱色（印影・強調ナンバリング用の第3アクセント） ---- */
+  --color-shu-700: #7A2C22;    /* 朱・濃：印影の縁、テキスト使用時 */
+  --color-shu-500: #9B3A2B;    /* 朱：印影本体、連番、星評価、現在地点 */
+  --color-shu-100: #F4E4DE;    /* 薄朱：タグ背景 */
+
   /* ---- カラー：ベース背景・テキスト ---- */
   --color-bg: #FBFAF7;         /* オフホワイト：ページ全体の背景 */
   --color-surface: #FFFFFF;    /* カード・パネル背景 */
@@ -39,15 +44,19 @@
   --fs-body-lg: 18px;      /* 本文（デスクトップ） */
   --lh-body: 1.8;          /* 本文行間 */
 
-  --fs-h1-mobile: 28px;
-  --fs-h1-desktop: 44px;
-  --fs-h2-mobile: 22px;
-  --fs-h2-desktop: 32px;
+  --fs-h1-mobile: 30px;
+  --fs-h1-desktop: 52px;
+  --fs-h2-mobile: 23px;
+  --fs-h2-desktop: 34px;
   --fs-h3-mobile: 18px;
   --fs-h3-desktop: 22px;
 
   --fs-small: 13px;
   --fs-caption: 12px;
+
+  /* ---- 帳簿・印影まわりの追加トークン ---- */
+  --ease-stamp: cubic-bezier(0.34, 1.56, 0.64, 1); /* 押印のわずかな弾みを表す */
+  --stamp-tilt: -6deg;
 
   --measure: 38ch; /* 本文最大文字幅の目安（全角35〜40文字相当） */
 

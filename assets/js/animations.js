@@ -90,6 +90,22 @@
       });
     }
 
+    /* ---------------- ヒーロー背景パララックス（背景レイヤーのみ、本文は動かさない） ---------------- */
+    var heroBg = document.querySelector(".hero__bg");
+    if (heroBg && hasScrollTrigger && !reduceMotion) {
+      var heroSection = heroBg.closest(".hero");
+      gsap.to(heroBg, {
+        yPercent: 8,
+        ease: "none",
+        scrollTrigger: {
+          trigger: heroSection || heroBg,
+          start: "top top",
+          end: "bottom top",
+          scrub: 0.6
+        }
+      });
+    }
+
     /* ---------------- 装飾線ドローイン ---------------- */
     var drawLines = gsap.utils.toArray(".draw-line");
     if (drawLines.length && hasScrollTrigger) {
