@@ -396,16 +396,28 @@
 .hero__bg {
   position: absolute;
   inset: -8% 0;
-  background-size: cover;
-  background-position: center;
   will-change: transform;
   z-index: -2;
+}
+.hero__bg-panel {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+.hero__bg-panel--1 { clip-path: polygon(0 0, 40% 0, 26% 100%, 0 100%); }
+.hero__bg-panel--2 { clip-path: polygon(40% 0, 71% 0, 57% 100%, 26% 100%); }
+.hero__bg-panel--3 { clip-path: polygon(71% 0, 100% 0, 100% 100%, 57% 100%); }
+@media (max-width: 767px) {
+  /* モバイルでは縦長になり斜めカットが読みにくいため、メインの写真1枚のみ表示 */
+  .hero__bg-panel--2, .hero__bg-panel--3 { display: none; }
+  .hero__bg-panel--1 { clip-path: none; }
 }
 .hero__overlay {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(100deg, rgba(15,25,46,0.85) 0%, rgba(20,33,61,0.6) 42%, rgba(20,33,61,0.26) 78%);
+  background: linear-gradient(100deg, rgba(15,25,46,0.88) 0%, rgba(20,33,61,0.62) 32%, rgba(20,33,61,0) 60%);
 }
 .hero__content { position: relative; max-width: 720px; }
 .hero__headline {
